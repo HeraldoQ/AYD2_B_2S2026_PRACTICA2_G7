@@ -1,0 +1,25 @@
+- name: Configurar servidor y desplegar microservicios
+  hosts: servidores
+  become: yes
+  tasks:
+    - name: Actualizar sistema e instalar dependencias
+      apt:
+        name: ['apt-transport-https', 'ca-certificates', 'curl']
+        state: present
+        update_cache: yes
+
+    - name: Instalar Docker y Docker Compose
+      apt:
+        name: ['docker.io', 'docker-compose']
+        state: present
+
+    - name: Copiar código del proyecto al servidor
+      copy:
+        src: ./
+        dest: /home/ubuntu/proyecto
+        owner: ubuntu
+
+    - name: Levantar contenedores
+      command: docker-compose up -d --build
+      args:
+        chdir: /home/ubuntu/proyecto

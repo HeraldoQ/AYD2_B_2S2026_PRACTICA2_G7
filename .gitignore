@@ -1,0 +1,20 @@
+# Dependencias de Node.js y React
+node_modules/
+dist/
+build/
+
+# Terraform y AWS
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+
+# Seguridad, llaves y variables de entorno
+ayd2_key
+*.pem
+.env
+
+# Archivos comprimidos y logs
+*.zip
+*.log
+npm-debug.log*
